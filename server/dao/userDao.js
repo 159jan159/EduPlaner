@@ -1,14 +1,14 @@
 const fs = require("fs");
 const path = require("path");
+const {uid: uid} = require("uid");
 
 const usersFolderPath = path.join(__dirname, "storage", "Users");
 
 //create
 function set(user) {
-    //TODO Generate user id, add to user object 
     //TODO - do i reallz need? check if uset id  allready exists return error orher way we would overwrite user 
     try {
-        user.id = "3112";
+        user.id = uid(16);
         const filePath = path.join(usersFolderPath, `${user.id}.json`);
         fs.writeFileSync(filePath, JSON.stringify(user), "utf8");
         return user;
