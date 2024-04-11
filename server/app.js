@@ -24,9 +24,8 @@ app.post('/usr/add', (req, res) => {
     }));
 })
 
-app.post('/usr/rm', (req, res) => {
-    res.send(dao.remove(3112));
-})
+app.get('/usr/rm', (req, res) => {
+    dao.update({"id":123,"name":"Joee","surname":"Doe","email":"joee.doe@mail.com","password":"1234","role":"1"})});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
