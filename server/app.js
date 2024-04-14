@@ -1,7 +1,16 @@
 const express = require('express');
-//const cors = require("cors");
+const cors = require("cors");
 const app = express();
 const port = 8000;
+
+app.use(express.json()); // podpora pro application/json
+app.use(express.urlencoded({ extended: true })); // podpora pro application/x-www-form-urlencoded
+
+app.use(cors());
+
+const userController = require("./controller/usr.js");
+
+app.use("/usr", userController);
 
 const dao = require("./dao/userDao.js");
 
