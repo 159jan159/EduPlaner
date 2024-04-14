@@ -30,7 +30,10 @@ async function listAll(req, res) {
         }
 
         const classList = semesterDao.list();
-        filteredClassList = classList.filter((c) => c.usrId === classs.usrId && c.semesterId === classs.semesterId);
+        //const cLMap = new Map(classList);
+
+
+        filteredClassList =  Object.values(classList).filter((c) => c.usrId === classs.usrId && c.semesterId === classs.semesterId);
         res.json(filteredClassList);
     } catch (e) {
         res.status(500).json({ message: e.message });
