@@ -2,13 +2,13 @@ const fs = require("fs");
 const path = require("path");
 const {uid: uid} = require("uid");
 
-const taskFolderPath = path.join(__dirname, "storage", "Task");
+const taskFolderPath = path.join(__dirname, "storage", "Tasks");
 
 //create
 function set(task) {
     //TODO - do i reallz need? check if uset id  allready exists return error orher way we would overwrite user 
     try {
-        user.id = uid(16);
+        task.id = uid(16);
         const filePath = path.join(taskFolderPath, `${task.id}.json`);
         fs.writeFileSync(filePath, JSON.stringify(task), "utf8");
         return task;
@@ -60,7 +60,7 @@ function list() {
         filesList.forEach(element => {
             data = fs.readFileSync(path.join(taskFolderPath, element));
             const ndata = JSON.parse(data);
-            usersMap[ndata.id] = ndata;
+            taskMap[ndata.id] = ndata;
         });
         return taskMap;
     } catch (error) {

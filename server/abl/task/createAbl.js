@@ -3,16 +3,14 @@ const ajv = new Ajv();
 const validateDateTime = require("../../helpers/validate-date-time.js");
 ajv.addFormat("date-time", { validate: validateDateTime });
 
-const classDao = require("../../dao/classDao.js");
-const e = require("express");
-const { format } = require("crypto-js");
+const taskDao = require("../../dao/taskDao.js");
 
 const schema = {
     type: "object",
     properties: {
         name: { type: "string" },//rq
         description: { type: "string" },//nrq
-        deadline: { type: "date", format: "date-time"},//rq
+        deadline: { type: "string", format: "date-time"},//rq
         usrId: { type: "string" },//Rq
         classId: { type: "string"},//nrq
     },
@@ -22,10 +20,9 @@ const schema = {
 
 async function create(req, res) {
     try {
-        let classs = req.body;
-
+        let task = req.body;
         // validate input
-        const valid = ajv.validate(schema, classs);
+        const valid = ajv.validate(schema, task);
         if (!valid) {
             res.status(400).json({
                 code: "dtoInIsNotValid",
@@ -35,9 +32,8 @@ async function create(req, res) {
             return;
         }
 
-        classs.solved = false;
-        const createdClass = classDao.set(classs);
-        res.json(createdClass);
+        task.solved = false;
+        res.json(taskDao.set(task));
     } catch (e) {
         res.status(500).json({ message: e.message });
     }
