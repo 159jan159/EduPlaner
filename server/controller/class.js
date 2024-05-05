@@ -8,7 +8,7 @@ router.post("/create", async (req, res) => {
     createAbl.create(req, res);
 });
 
-router.get("/listAll", async (req, res) => {
+router.post("/listAll", async (req, res) => {
     listAll.listAll(req, res);
 });
 

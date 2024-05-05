@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
 
+import { useTranslation } from 'react-i18next';
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { useState } from 'react';
+
+
+import Dashboard from './Dashboard';
+import Login from './Login';
+import Register from './Register';
+
+
 function App() {
+  const [user, setUser] = useState(null);
+
+  console.log(user)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Login setUser={setUser}/>} />
+        <Route path="/register" element={<Register setUser={setUser}/>} />
+        <Route path="/dashboard" element={<Dashboard user={user} setUser={setUser} />} />
+
+
+      </Routes>
+    </BrowserRouter>
   );
 }
+
 
 export default App;

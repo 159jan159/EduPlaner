@@ -6,7 +6,7 @@ const registerAbl = require("../abl/user/registerAbl.js")
 
 
 
-router.get("/login", (req, res) => {
+router.post("/login", (req, res) => {
     loginAbl.login(req,res);
 });
 

@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.EduPlaner{
+  font-size: 3em;
+  color: #282c34;
+  margin: 20px;
+  margin-top: 30px;
+}
+
+.Login{
+  width: 30%;
+  display: block;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: auto;
+}
